@@ -1,52 +1,54 @@
 ﻿Esc::ExitApp
 
-^i::
+^i:: 
 
-if (A_Wday != 5)
-{
-  MsgBox, Ik heb het je zo makkelijk gemaakt en alsnog maak je het te laat :'(
+location = C:\Users\%A_UserName%\Desktop\intervisieVerslag%A_UserName%%A_YDay%.txt ; Locatie van het verslag
+questionNr = 1 ; Standaard vraag nummer
+  
+if (checkIfFriday(5)) {
+  MsgBox, Goedzo! Je maakt het optijd!
+} else {
+  MsgBox, Het is geen vrijdag, waarom wil je je verslag maken?
 }
 
 FileDelete, C:\Users\%A_UserName%\Desktop\intervisieVerslag%A_UserName%%A_YDay%.txt ; Verwijder het oude invulverslag van vandaag
 
-FileAppend, Hoe is de afgelopen week gegaan?`n, C:\Users\%A_UserName%\Desktop\intervisieVerslag%A_UserName%%A_YDay%.txt ; Maak nieuw invulverslag aan
+FileAppend,, %location% ; Maak nieuw invulverslag aan
 
-InputBox, vraag1, Invullen intervisieverslag - made by Lars , 1 v/d 10:`n Heb ik me aan mijn planning gehouden? Zo nee: waar zat het hem in?, 1000, 1000
-FileAppend, Heb ik me aan mijn planning gehouden? Zo nee: waar zat het hem in? `n- %vraag1%`n, C:\Users\%A_UserName%\Desktop\intervisieVerslag%A_UserName%%A_YDay%.txt
+FileAppend, Hoe is de afgelopen week gegaan?`n, %location% ; Deel 1
+QuestionBox("Heb ik me aan mijn planning gehouden? Zo nee: waar zat het hem in?") ; Vraag 1
+QuestionBox("Zijn er dingen waar ik tegenaan gelopen ben?") ; Vraag 2
+QuestionBox("Heb ik ergens hulp bij nodig en wie ga ik daar dan voor inschakelen?") ; Vraag 3
+QuestionBox("Waar ben ik trots op deze week?") ; Vraag 4
 
-InputBox, vraag2, Invullen intervisieverslag - made by Lars , 2 v/d 10:`n Zijn er dingen waar ik tegenaan gelopen ben?, 1000, 1000
-FileAppend, Zijn er dingen waar ik tegenaan gelopen ben?`n- %vraag2%`n, C:\Users\%A_UserName%\Desktop\intervisieVerslag%A_UserName%%A_YDay%.txt
+FileAppend, `nKomende week:`n, %location% ; Deel 2 
+QuestionBox("Wat voor huiswerk is er voor de AVO vakken?") ; Vraag 5
+QuestionBox("Voorzie ik problemen?") ; Vraag 6
+QuestionBox("Zijn er bijzonderheden?") ; Vraag 7
+QuestionBox("Wat is je planning?") ; Vraag 8
 
-InputBox, vraag3, Invullen intervisieverslag - made by Lars , 3 v/d 10:`n Heb ik ergens hulp bij nodig en wie ga ik daar dan voor inschakelen?, 1000, 1000
-FileAppend, Heb ik ergens hulp bij nodig en wie ga ik daar dan voor inschakelen?`n- %vraag3%`n, C:\Users\%A_UserName%\Desktop\intervisieVerslag%A_UserName%%A_YDay%.txt
+FileAppend, `nLeerdoel?`n, %location% ; Deel 3
+QuestionBox("Wat heb ik deze week concreet gedaan om met mijn leerdoel aan de slag te gaan?") ; Vraag 9
 
-InputBox, vraag4, Invullen intervisieverslag - made by Lars , 4 v/d 10:`n Waar ben ik trots op deze week?, 1000, 1000
-FileAppend, Waar ben ik trots op deze week?`n- %vraag4%`n`n, C:\Users\%A_UserName%\Desktop\intervisieVerslag%A_UserName%%A_YDay%.txt
-
-FileAppend, Komende week:`n, C:\Users\%A_UserName%\Desktop\intervisieVerslag%A_UserName%%A_YDay%.txt
-
-InputBox, vraag5, Invullen intervisieverslag - made by Lars , 5 v/d 10:`n Wat voor huiswerk is er voor de AVO vakken?, 1000, 1000
-FileAppend, Wat voor huiswerk is er voor de AVO vakken?`n- %vraag5%`n, C:\Users\%A_UserName%\Desktop\intervisieVerslag%A_UserName%%A_YDay%.txt
-
-InputBox, vraag6, Invullen intervisieverslag - made by Lars , 6 v/d 10:`n Voorzie ik problemen?, 1000, 1000
-FileAppend, Voorzie ik problemen?`n- %vraag6%`n, C:\Users\%A_UserName%\Desktop\intervisieVerslag%A_UserName%%A_YDay%.txt
-
-InputBox, vraag7, Invullen intervisieverslag - made by Lars , 7 v/d 10:`n Zijn er bijzonderheden?, 1000, 1000
-FileAppend, Zijn er bijzonderheden?`n- %vraag7%`n, C:\Users\%A_UserName%\Desktop\intervisieVerslag%A_UserName%%A_YDay%.txt
-
-InputBox, vraag8, Invullen intervisieverslag - made by Lars , 8 v/d 10:`n Planning Leerdoel?, 1000, 1000
-FileAppend, Planning`n- %vraag8%`n`n, C:\Users\%A_UserName%\Desktop\intervisieVerslag%A_UserName%%A_YDay%.txt
-
-FileAppend, Leerdoel?`n, C:\Users\%A_UserName%\Desktop\intervisieVerslag%A_UserName%%A_YDay%.txt
-
-InputBox, vraag9, Invullen intervisieverslag - made by Lars , 9 v/d 10:`n Wat heb ik deze week concreet gedaan om met mijn leerdoel aan de slag te gaan?, 1000, 1000
-FileAppend, Wat heb ik deze week concreet gedaan om met mijn leerdoel aan de slag te gaan?`n- %vraag9%`n`n, C:\Users\%A_UserName%\Desktop\intervisieVerslag%A_UserName%%A_YDay%.txt
-
-FileAppend, Is er nog iets wat iemand graag wil bespreken?`n, C:\Users\%A_UserName%\Desktop\intervisieVerslag%A_UserName%%A_YDay%.txt
-
-InputBox, vraag10, Invullen intervisieverslag - made by Lars , 10 v/d 10:`n Wil je nog wat bespreken?, 1000, 1000
-FileAppend, - %vraag10%, C:\Users\%A_UserName%\Desktop\intervisieVerslag%A_UserName%%A_YDay%.txt
+FileAppend, `nIs er nog iets wat iemand graag wil bespreken?`n, %location% ; Deel 4
+QuestionBox("Wil je nog iets bespreken?", " Spoiler alert: Ja, dat wil je") ; Vraag 10
 
 MsgBox, , The End, Kijk je verslag nog even na! Als je:`n - Vragen hebt, vraag ze`n - Iets fout hebt ingevuld: wijzig ze in het tekstbestand`n`n Hopelijk is het gelukt, tot volgende week! :)
 
-Run, C:\Users\%A_UserName%\Desktop\intervisieVerslag%A_UserName%%A_YDay%.txt ; Open het verslag
+Run, %location% ; Open het verslag
+
+; Functies
+QuestionBox(question, ByRef optionalText = "") {
+  global location, questionNr ; Krijg de functies van buitenaf
+  InputBox, outputVar, Intervisieverslag - Made by Lars, Vraag %questionNr% v/d 10`n %question% %optionalText%,, 500, 200
+  FileAppend, %question%`n - %outputVar%`n, %location%
+  questionNr++
+}
+
+checkIfFriday(weekDayNr) {
+ if (weekDayNr == 5) {
+    return true
+  } else {
+    return false
+  }
+}
